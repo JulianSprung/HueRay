@@ -2,6 +2,8 @@ package com.example.hueray
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.room.Room
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -9,4 +11,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
+
+    val db = Room.databaseBuilder(
+        applicationContext,
+        AppDatabase::class.java, "scores.db"
+    ).build()
+
 }
+
