@@ -8,5 +8,5 @@ import androidx.room.PrimaryKey
 //data class HappyStore(val score:Int)
 
 @Entity(tableName ="happy_table")
-class HappinessStore(@PrimaryKey @ColumnInfo(name="score") val score: Int)
+class HappinessScore(@PrimaryKey @ColumnInfo(name="score") val score: Int)
 

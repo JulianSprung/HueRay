@@ -6,10 +6,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 // Annotates class to be a Room Database with a table (entity) of the Word class
-@Database(entities = arrayOf(HappinessStore::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(HappinessScore::class), version = 1, exportSchema = false)
 public abstract class HappinessRoomDatabase : RoomDatabase() {
 
-    abstract fun HappinessStoreDao(): HappinessStoreDao
+    abstract fun HappinessStoreDao(): HappinessScoreDao
 
     companion object {
         // Singleton prevents multiple instances of database opening at the
