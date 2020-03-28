@@ -1,12 +1,21 @@
 package com.example.hueray
 
+import android.app.Application
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
+import kotlinx.android.synthetic.main.fragment_rate_your_happiness.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.sql.Timestamp
+import java.time.Instant
+import kotlin.concurrent.timer
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -18,6 +27,8 @@ private const val ARG_PARAM2 = "param2"
  * Use the [rate_your_happiness.newInstance] factory method to
  * create an instance of this fragment.
  */
+
+
 class rate_your_happiness : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -43,8 +54,42 @@ class rate_your_happiness : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         view.findViewById<Button>(R.id.button).setOnClickListener {
+            // Database thread
+            var score = HappinessScore(
+                Timestamp(System.currentTimeMillis()).toInstant().toString(),
+                this.button.text.toString().toInt()
+            )
+
+            // Write value to db
+            GlobalScope.launch {
+                val happinessDao =
+                    HappinessRoomDatabase.getDatabase(Application(), scope = GlobalScope).HappinessStoreDao()
+                happinessDao.insert(score)
+            }
+
+            // Navigate to 'thanks for rating view'
             findNavController().navigate(R.id.action_rate_your_happiness_to_thanks_for_rating)
         }
+
+        view.findViewById<Button>(R.id.button2).setOnClickListener {
+            // Database thread
+            var score = HappinessScore(
+                Timestamp(System.currentTimeMillis()).toInstant().toString(),
+                this.button2.text.toString().toInt()
+            )
+
+            // Write value to db
+            GlobalScope.launch {
+                val happinessDao =
+                    HappinessRoomDatabase.getDatabase(Application(), scope = GlobalScope).HappinessStoreDao()
+                happinessDao.insert(score)
+                Log.d("MESSAGE", "Inserted score:")
+            }
+
+            // Navigate to 'thanks for rating view'
+            findNavController().navigate(R.id.action_rate_your_happiness_to_thanks_for_rating)
+        }
+
     }
 
     companion object {

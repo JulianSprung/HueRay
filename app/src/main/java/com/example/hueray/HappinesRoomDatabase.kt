@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import kotlinx.coroutines.CoroutineScope
 
 // Annotates class to be a Room Database with a table (entity) of the Word class
 @Database(entities = arrayOf(HappinessScore::class), version = 1, exportSchema = false)
@@ -17,7 +18,7 @@ public abstract class HappinessRoomDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: HappinessRoomDatabase? = null
 
-        fun getDatabase(context: Context): HappinessRoomDatabase {
+        fun getDatabase(context: Context, scope: CoroutineScope): HappinessRoomDatabase {
             val tempInstance = INSTANCE
             if (tempInstance != null) {
                 return tempInstance
@@ -26,7 +27,7 @@ public abstract class HappinessRoomDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     HappinessRoomDatabase::class.java,
-                    "word_database"
+                    "happy_table"
                 ).build()
                 INSTANCE = instance
                 return instance

@@ -4,21 +4,22 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
 // Class extends AndroidViewModel and requires application as a parameter.
 class HappinessScoreViewModel(application: Application) : AndroidViewModel(application) {
 
     // The ViewModel maintains a reference to the repository to get data.
-    private val repository: HappinessRepository
-    val allScores: LiveData<List<HappinessScore>>
+    //private val repository: HappinessRepository
+    //val allScores: List<HappinessScore>
 
     init {
         // Gets reference to WordDao from WordRoomDatabase to construct
         // the correct WordRepository.
-        val happinessDao = HappinessRoomDatabase.getDatabase(application).HappinessStoreDao()
-        repository = HappinessRepository(happinessDao)
-        allScores = repository.allScores
+        val happinessDao = HappinessRoomDatabase.getDatabase(application, MainScope()).HappinessStoreDao()
+//        repository = HappinessRepository(happinessDao)
+//        allScores = repository.allScores
     }
 
     /**
@@ -28,7 +29,7 @@ class HappinessScoreViewModel(application: Application) : AndroidViewModel(appli
      * ViewModels have a coroutine scope based on their lifecycle called
      * viewModelScope which we can use here.
      */
-    fun insert(score: HappinessScore) = viewModelScope.launch {
-        repository.insert(score)
-    }
+//    fun insert(score: HappinessScore) = viewModelScope.launch {
+//        repository.insert(score)
+//    }
 }
