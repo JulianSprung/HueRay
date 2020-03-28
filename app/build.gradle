@@ -6,6 +6,7 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
+
     defaultConfig {
         applicationId "com.example.hueray"
         minSdkVersion 27
@@ -29,7 +30,6 @@ android {
 
 
 }
-
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
