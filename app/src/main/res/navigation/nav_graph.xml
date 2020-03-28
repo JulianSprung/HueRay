@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/rate_your_happiness">
+
+    <fragment
+        android:id="@+id/rate_your_happiness"
+        android:name="com.example.hueray.rate_your_happiness"
+        android:label="fragment_rate_your_happiness"
+        tools:layout="@layout/fragment_rate_your_happiness" >
+        <action
+            android:id="@+id/action_rate_your_happiness_to_thanks_for_rating"
+            app:destination="@id/thanks_for_rating" />
+    </fragment>
+    <fragment
+        android:id="@+id/thanks_for_rating"
+        android:name="com.example.hueray.thanks_for_rating"
+        android:label="fragment_thanks_for_rating"
+        tools:layout="@layout/fragment_thanks_for_rating" >
+        <action
+            android:id="@+id/action_thanks_for_rating_to_rate_your_happiness"
+            app:destination="@id/rate_your_happiness" />
+    </fragment>
+</navigation>
