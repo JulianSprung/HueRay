@@ -1,12 +1,17 @@
 package com.example.hueray
 
+import android.app.Application
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
+import kotlinx.android.synthetic.main.fragment_thanks_for_rating.view.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -42,9 +47,21 @@ class thanks_for_rating : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Write value to db
+        GlobalScope.launch {
+            val happinessDao = HappinessRoomDatabase.getDatabase(Application(), GlobalScope).HappinessStoreDao()
+            val scores = happinessDao.getAll()
+
+            scores?.forEach {
+                Log.d("SCORE", it.toString())
+            }
+
+            //view.button11.setText("Last score: " + scores.last().score)
+        }
         view.findViewById<Button>(R.id.button11).setOnClickListener {
             findNavController().navigate(R.id.action_thanks_for_rating_to_rate_your_happiness)
-        }
+            }
+
     }
 
     companion object {
