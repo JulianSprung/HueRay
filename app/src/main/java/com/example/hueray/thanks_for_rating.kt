@@ -3,14 +3,21 @@ package com.example.hueray
 import android.app.Application
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import kotlinx.android.synthetic.main.fragment_thanks_for_rating.view.*
-import kotlinx.coroutines.GlobalScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.hueray.happyscore.adapter.HappyScoreListAdapter
+import com.example.hueray.happyscore.database.HappyScoreDatabase
+import com.example.hueray.happyscore.viewmodel.HappyScoreViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
@@ -27,6 +34,7 @@ class thanks_for_rating : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var happyscoreViewModel: HappyScoreViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +42,8 @@ class thanks_for_rating : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
+        happyscoreViewModel = ViewModelProvider(this).get(HappyScoreViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -47,21 +57,20 @@ class thanks_for_rating : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Write value to db
-        GlobalScope.launch {
-            val happinessDao = HappinessRoomDatabase.getDatabase(Application(), GlobalScope).HappinessStoreDao()
-            val scores = happinessDao.getAll()
 
-            scores?.forEach {
-                Log.d("SCORE", it.toString())
-            }
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerview)
+        val adapter = HappyScoreListAdapter(context)
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(context)
 
-            //view.button11.setText("Last score: " + scores.last().score)
-        }
+        happyscoreViewModel.lastTenScores.observe(this, Observer { scores ->
+            // Update the cached copy of the words in the adapter.
+            scores?.let { adapter.setScores(it) }
+        })
+
         view.findViewById<Button>(R.id.button11).setOnClickListener {
             findNavController().navigate(R.id.action_thanks_for_rating_to_rate_your_happiness)
-            }
-
+        }
     }
 
     companion object {

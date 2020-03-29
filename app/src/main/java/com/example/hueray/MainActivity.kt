@@ -2,8 +2,8 @@ package com.example.hueray
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.MainScope
+import com.example.hueray.happyscore.database.HappyScoreDatabase
+import com.example.hueray.happyscore.viewmodel.HappyScoreViewModel
 
 
 class MainActivity : AppCompatActivity() {
@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // database thread
-        var db = HappinessRoomDatabase.getDatabase(application, MainScope())
+        var db = HappyScoreDatabase.getDatabase(application)
     }
 }
 
