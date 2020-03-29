@@ -12,6 +12,9 @@ interface HappyScoreDao {
     @Query("SELECT * from happyscore")
     fun getAll(): LiveData<List<HappyScore>>
 
+    @Query("SELECT * from happyscore ORDER BY timestamp DESC LIMIT 10")
+    fun getLastTen(): LiveData<List<HappyScore>>
+
     @Insert
     suspend fun insert(score: HappyScore)
 

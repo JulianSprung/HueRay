@@ -1,12 +1,13 @@
-package com.example.architextureexample.viewmodel
+package com.example.hueray.happyscore.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.example.architextureexample.database.HappyScoreDatabase
 import com.example.hueray.happyscore.database.HappyScore
+import com.example.hueray.happyscore.database.HappyScoreDatabase
 import com.example.hueray.happyscore.repository.HappyScoreRepository
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
 // Class extends AndroidViewModel and requires application as a parameter.
@@ -16,6 +17,7 @@ class HappyScoreViewModel(application: Application) : AndroidViewModel(applicati
     private val repository: HappyScoreRepository
     // LiveData gives us updated HappyScores when they change.
     val allHappyScores: LiveData<List<HappyScore>>
+    val lastTenScores: LiveData<List<HappyScore>>
 
     init {
         // Gets reference to HappyScoreDao from HappyScoreRoomDatabase to construct
@@ -23,6 +25,7 @@ class HappyScoreViewModel(application: Application) : AndroidViewModel(applicati
         val HappyScoresDao = HappyScoreDatabase.getDatabase(application).HappyScoreDao()
         repository = HappyScoreRepository(HappyScoresDao)
         allHappyScores = repository.allScores
+        lastTenScores = repository.lastTenScores
     }
 
     /**

@@ -1,13 +1,11 @@
-package com.example.architextureexample.database
+package com.example.hueray.happyscore.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.hueray.happyscore.database.HappyScore
-import com.example.hueray.happyscore.database.HappyScoreDao
 
-// Annotates class to be a Room Database with a table (entity) of the HappyScore class
+// Annotates class to be a Room Database with a table (entity) of the Word class
 @Database(entities = arrayOf(HappyScore::class), version = 1, exportSchema = true)
 public abstract class HappyScoreDatabase : RoomDatabase() {
 
@@ -20,7 +18,8 @@ public abstract class HappyScoreDatabase : RoomDatabase() {
         private var INSTANCE: HappyScoreDatabase? = null
 
         fun getDatabase(context: Context): HappyScoreDatabase {
-            val tempInstance = INSTANCE
+            val tempInstance =
+                INSTANCE
             if (tempInstance != null) {
                 return tempInstance
             }
@@ -28,7 +27,7 @@ public abstract class HappyScoreDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     HappyScoreDatabase::class.java,
-                    "happyscore_database"
+                    "happyscore_table"
                 ).build()
                 INSTANCE = instance
                 return instance
