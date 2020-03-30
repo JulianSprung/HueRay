@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/rate_your_happiness"
-        android:name="com.example.hueray.rate_your_happiness"
+        android:name="com.example.hueray.fragments.happy.HappyRate"
         android:label="fragment_rate_your_happiness"
         tools:layout="@layout/fragment_rate_your_happiness" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/thanks_for_rating"
-        android:name="com.example.hueray.thanks_for_rating"
+        android:name="com.example.hueray.fragments.happy.HappyScores"
         android:label="fragment_thanks_for_rating"
         tools:layout="@layout/fragment_thanks_for_rating" >
         <action

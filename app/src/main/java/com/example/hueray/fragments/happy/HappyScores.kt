@@ -1,8 +1,6 @@
-package com.example.hueray
+package com.example.hueray.fragments.happy
 
-import android.app.Application
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,37 +11,24 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.hueray.R
 import com.example.hueray.happyscore.adapter.HappyScoreListAdapter
-import com.example.hueray.happyscore.database.HappyScoreDatabase
-import com.example.hueray.happyscore.viewmodel.HappyScoreViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import com.example.hueray.viewmodels.HappyScoresViewModel
 
 /**
  * A simple [Fragment] subclass.
- * Use the [thanks_for_rating.newInstance] factory method to
+ * Use the [HappyScores.newInstance] factory method to
  * create an instance of this fragment.
  */
-class thanks_for_rating : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-    private lateinit var happyscoreViewModel: HappyScoreViewModel
+class HappyScores : Fragment() {
+    private lateinit var happyscoreViewModel: HappyScoresViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
         }
 
-        happyscoreViewModel = ViewModelProvider(this).get(HappyScoreViewModel::class.java)
+        happyscoreViewModel = ViewModelProvider(this).get(HappyScoresViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -85,10 +70,8 @@ class thanks_for_rating : Fragment() {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            thanks_for_rating().apply {
+            HappyScores().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
                 }
             }
     }
