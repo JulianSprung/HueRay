@@ -4,9 +4,9 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.example.hueray.happyscore.database.HappyScore
-import com.example.hueray.happyscore.database.HappyScoreDatabase
-import com.example.hueray.happyscore.repository.HueRayRepository
+import com.example.hueray.database.HappyScore
+import com.example.hueray.database.HappyScoreDatabase
+import com.example.hueray.repository.HueRayRepository
 import kotlinx.coroutines.launch
 
 // Class extends AndroidViewModel and requires application as a parameter.

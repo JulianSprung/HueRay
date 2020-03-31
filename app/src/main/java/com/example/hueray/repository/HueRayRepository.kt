@@ -1,8 +1,8 @@
-package com.example.hueray.happyscore.repository
+package com.example.hueray.repository
 
 import androidx.lifecycle.LiveData
-import com.example.hueray.happyscore.database.HappyScore
-import com.example.hueray.happyscore.database.HappyScoreDao
+import com.example.hueray.database.HappyScore
+import com.example.hueray.database.HappyScoreDao
 
 
 // Declares the DAO as a private property in the constructor. Pass in the DAO

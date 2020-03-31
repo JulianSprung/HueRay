@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hueray.R
-import com.example.hueray.happyscore.adapter.HappyScoreListAdapter
+import com.example.hueray.adapters.HappyScoreListAdapter
 import com.example.hueray.viewmodels.HappyScoresViewModel
 
 /**

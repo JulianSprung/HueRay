@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
 import com.example.hueray.R
-import com.example.hueray.happyscore.database.HappyScore
-import com.example.hueray.happyscore.database.HappyScoreDatabase
+import com.example.hueray.database.HappyScore
+import com.example.hueray.database.HappyScoreDatabase
 import kotlinx.android.synthetic.main.fragment_rate_your_happiness.*
 import kotlinx.coroutines.*
 import java.sql.Timestamp

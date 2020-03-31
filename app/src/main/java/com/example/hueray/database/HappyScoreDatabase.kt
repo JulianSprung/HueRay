@@ -1,4 +1,4 @@
-package com.example.hueray.happyscore.database
+package com.example.hueray.database
 
 import android.content.Context
 import androidx.room.Database
