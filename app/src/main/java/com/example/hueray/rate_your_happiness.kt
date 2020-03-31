@@ -8,14 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
+import com.example.hueray.happyscore.database.HappyScore
+import com.example.hueray.happyscore.database.HappyScoreDatabase
 import kotlinx.android.synthetic.main.fragment_rate_your_happiness.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import java.sql.Timestamp
-import java.time.Instant
-import kotlin.concurrent.timer
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,14 +27,35 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 
+class AddScoreToDb : AppCompatActivity(), CoroutineScope by MainScope() {
+    private var happyscoredb = HappyScoreDatabase.getDatabase(Application()).HappyScoreDao()
+
+    override fun onDestroy() {
+        super.onDestroy()
+        cancel() // cancel is extension on CoroutineScope
+    }
+
+    /*
+     * Note how coroutine builders are scoped: if activity is destroyed or any of the launched coroutines
+     * in this method throws an exception, then all nested coroutines are cancelled.
+     */
+    fun insert(score: HappyScore) = launch { // <- extension on current activity, launched in the main thread
+        // ... here we can use suspending functions or coroutine builders with other dispatchers
+        happyscoredb.insert(score) // draw in the main thread
+        Log.d("DEBUG", "Inserted score: " + score.toString())
+    }
+}
+
 
 class rate_your_happiness : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    val fragmentScope = CoroutineScope(Dispatchers.Main)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
@@ -55,35 +75,16 @@ class rate_your_happiness : Fragment() {
 
         view.findViewById<Button>(R.id.button).setOnClickListener {
             // Database thread
-            var score = HappinessScore(
+            var score = HappyScore(
                 Timestamp(System.currentTimeMillis()).toInstant().toString(),
                 this.button.text.toString().toInt()
             )
 
             // Write value to db
-            GlobalScope.launch {
+            fragmentScope.launch {
                 val happinessDao =
-                    HappinessRoomDatabase.getDatabase(Application(), scope = GlobalScope).HappinessStoreDao()
+                    HappyScoreDatabase.getDatabase(Application()).HappyScoreDao()
                 happinessDao.insert(score)
-            }
-
-            // Navigate to 'thanks for rating view'
-            findNavController().navigate(R.id.action_rate_your_happiness_to_thanks_for_rating)
-        }
-
-        view.findViewById<Button>(R.id.button2).setOnClickListener {
-            // Database thread
-            var score = HappinessScore(
-                Timestamp(System.currentTimeMillis()).toInstant().toString(),
-                this.button2.text.toString().toInt()
-            )
-
-            // Write value to db
-            GlobalScope.launch {
-                val happinessDao =
-                    HappinessRoomDatabase.getDatabase(Application(), scope = GlobalScope).HappinessStoreDao()
-                happinessDao.insert(score)
-                Log.d("MESSAGE", "Inserted score:")
             }
 
             // Navigate to 'thanks for rating view'

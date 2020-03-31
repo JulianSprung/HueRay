@@ -4,4 +4,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_score">Add Score</string>
+    <string name="thanks_for_rating_text">Thanks For Rating</string>
+    <string name="last_10_scores_text">Last 10 Scores</string>
 </resources>
