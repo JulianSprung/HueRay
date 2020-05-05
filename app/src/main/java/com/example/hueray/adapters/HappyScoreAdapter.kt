@@ -1,4 +1,4 @@
-package com.example.hueray.happyscore.adapter
+package com.example.hueray.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hueray.R
-import com.example.hueray.happyscore.database.HappyScore
+import com.example.hueray.database.HappyScore
 
 class HappyScoreListAdapter internal constructor(
     context: Context?

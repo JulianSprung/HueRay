@@ -1,13 +1,13 @@
-package com.example.hueray.happyscore.repository
+package com.example.hueray.repository
 
 import androidx.lifecycle.LiveData
-import com.example.hueray.happyscore.database.HappyScore
-import com.example.hueray.happyscore.database.HappyScoreDao
+import com.example.hueray.database.HappyScore
+import com.example.hueray.database.HappyScoreDao
 
 
 // Declares the DAO as a private property in the constructor. Pass in the DAO
 // instead of the whole database, because you only need access to the DAO
-class HappyScoreRepository(private val HappyScoreDao: HappyScoreDao) {
+class HueRayRepository(private val HappyScoreDao: HappyScoreDao) {
 
     // Room executes all queries on a separate thread.
     // Observed LiveData will notify the observer when the data has changed.

@@ -1,20 +1,19 @@
-package com.example.hueray.happyscore.viewmodel
+package com.example.hueray.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.example.hueray.happyscore.database.HappyScore
-import com.example.hueray.happyscore.database.HappyScoreDatabase
-import com.example.hueray.happyscore.repository.HappyScoreRepository
-import kotlinx.coroutines.MainScope
+import com.example.hueray.database.HappyScore
+import com.example.hueray.database.HappyScoreDatabase
+import com.example.hueray.repository.HueRayRepository
 import kotlinx.coroutines.launch
 
 // Class extends AndroidViewModel and requires application as a parameter.
-class HappyScoreViewModel(application: Application) : AndroidViewModel(application) {
+class HappyScoresViewModel(application: Application) : AndroidViewModel(application) {
 
     // The ViewModel maintains a reference to the repository to get data.
-    private val repository: HappyScoreRepository
+    private val repository: HueRayRepository
     // LiveData gives us updated HappyScores when they change.
     val allHappyScores: LiveData<List<HappyScore>>
     val lastTenScores: LiveData<List<HappyScore>>
@@ -23,7 +22,7 @@ class HappyScoreViewModel(application: Application) : AndroidViewModel(applicati
         // Gets reference to HappyScoreDao from HappyScoreRoomDatabase to construct
         // the correct HappyScoreRepository.
         val HappyScoresDao = HappyScoreDatabase.getDatabase(application).HappyScoreDao()
-        repository = HappyScoreRepository(HappyScoresDao)
+        repository = HueRayRepository(HappyScoresDao)
         allHappyScores = repository.allScores
         lastTenScores = repository.lastTenScores
     }

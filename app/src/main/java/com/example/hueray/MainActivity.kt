@@ -2,8 +2,7 @@ package com.example.hueray
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.hueray.happyscore.database.HappyScoreDatabase
-import com.example.hueray.happyscore.viewmodel.HappyScoreViewModel
+import com.example.hueray.database.HappyScoreDatabase
 
 
 class MainActivity : AppCompatActivity() {
