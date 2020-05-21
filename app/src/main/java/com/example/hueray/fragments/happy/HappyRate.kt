@@ -59,7 +59,7 @@ class HappyRate : Fragment() {
                 }
 
                 // Navigate to 'thanks for rating view'
-                findNavController().navigate(R.id.action_rate_your_happiness_to_thanks_for_rating)
+                //findNavController().navigate(R.id.action_rate_your_happiness_to_thanks_for_rating)
             }
         }
 
