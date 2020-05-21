@@ -42,22 +42,25 @@ class HappyRate : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<Button>(R.id.button).setOnClickListener {
-            // Database thread
-            var score = HappyScore(
-                Timestamp(System.currentTimeMillis()).toInstant().toString(),
-                this.button.text.toString().toInt()
-            )
+        val buttonIDs = listOf(R.id.button,R.id.button2, R.id.button3, R.id.button4, R.id.button5, R.id.button6, R.id.button7, R.id.button8, R.id.button9, R.id.button10)
+        for (buttonID in buttonIDs) {
+            view.findViewById<Button>(buttonID).setOnClickListener {
+                // Database thread
+                var score = HappyScore(
+                    Timestamp(System.currentTimeMillis()).toInstant().toString(),
+                    view.findViewById<Button>(buttonID).text.toString().toInt()
+                )
 
-            // Write value to db
-            fragmentScope.launch {
-                val happinessDao =
-                    HappyScoreDatabase.getDatabase(Application()).HappyScoreDao()
-                happinessDao.insert(score)
+                // Write value to db
+                fragmentScope.launch {
+                    val happinessDao =
+                        HappyScoreDatabase.getDatabase(Application()).HappyScoreDao()
+                    happinessDao.insert(score)
+                }
+
+                // Navigate to 'thanks for rating view'
+                findNavController().navigate(R.id.action_rate_your_happiness_to_thanks_for_rating)
             }
-
-            // Navigate to 'thanks for rating view'
-            findNavController().navigate(R.id.action_rate_your_happiness_to_thanks_for_rating)
         }
 
     }
