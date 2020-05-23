@@ -54,7 +54,7 @@ class HappyScores : Fragment() {
         })
 
         view.findViewById<Button>(R.id.button11).setOnClickListener {
-            findNavController().navigate(R.id.action_thanks_for_rating_to_rate_your_happiness)
+            findNavController().navigate(R.id.action_thanks_for_rating_to_homeScreen)
         }
     }
 
