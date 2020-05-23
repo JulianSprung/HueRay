@@ -106,7 +106,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="123dp"
         android:layout_marginEnd="10dp"
-        android:background="@drawable/round_button"
         android:text="-"
         android:textSize="36sp"
         app:layout_constraintEnd_toStartOf="@+id/seekBarPleasure"
