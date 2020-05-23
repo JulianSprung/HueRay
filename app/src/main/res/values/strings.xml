@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">HueRay</string>
-    <string name="app_title">How happy are you?</string>
+    <string name="purpose_score">What is your purpose score?</string>
+    <string name="pleasure_score">What is your pleasure score?</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

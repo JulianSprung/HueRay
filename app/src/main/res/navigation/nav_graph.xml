@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_homeScreen_to_thanks_for_rating"
             app:destination="@id/thanks_for_rating" />
+        <action
+            android:id="@+id/action_homeScreen_to_addEvent"
+            app:destination="@id/addEvent" />
     </fragment>
     <fragment
         android:id="@+id/dailyPleasureAndPurpose"
@@ -33,6 +36,15 @@
         tools:layout="@layout/fragment_daily_pleasure_and_purpose" >
         <action
             android:id="@+id/action_dailyPleasureAndPurpose_to_homeScreen"
+            app:destination="@id/homeScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEvent"
+        android:name="com.example.hueray.addEvent"
+        android:label="fragment_add_event"
+        tools:layout="@layout/fragment_add_event" >
+        <action
+            android:id="@+id/action_addEvent_to_homeScreen"
             app:destination="@id/homeScreen" />
     </fragment>
 </navigation>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:verticalScrollbarPosition="defaultPosition"
+    tools:context=".addEvent">
+
+    <EditText
+        android:id="@+id/editTextAddEvent"
+        android:layout_width="364dp"
+        android:layout_height="140dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewAddEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="85dp"
+        android:text="Enter an event in the text box below :) "
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewPleasure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="180dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="180dp"
+        android:text="Pleasure"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAddEvent" />
+
+    <TextView
+        android:id="@+id/textViewPurpose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="180dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="180dp"
+        android:text="Purpose"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPleasure" />
+
+    <SeekBar
+        android:id="@+id/seekBarPurpose"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="177dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="100dp"
+        android:max="2"
+        android:progress="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPurpose" />
+
+    <SeekBar
+        android:id="@+id/seekBarPleasure"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="181dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="100dp"
+        android:max="2"
+        android:progress="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPleasure" />
+
+    <Button
+        android:id="@+id/textViewPlusPleasure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="123dp"
+        android:text="+"
+        android:textSize="36sp"
+        app:layout_constraintStart_toEndOf="@+id/seekBarPleasure"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAddEvent" />
+
+    <Button
+        android:id="@+id/textViewMinusPleasure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="123dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/round_button"
+        android:text="-"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toStartOf="@+id/seekBarPleasure"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAddEvent" />
+
+    <Button
+        android:id="@+id/textViewPlusPupose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="253dp"
+        android:text="+"
+        android:textSize="36sp"
+        app:layout_constraintStart_toEndOf="@+id/seekBarPurpose"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAddEvent" />
+
+    <Button
+        android:id="@+id/textViewMinusPurpose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="253dp"
+        android:layout_marginEnd="10dp"
+        android:text="-"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toStartOf="@+id/seekBarPurpose"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAddEvent" />
+
+    <Button
+        android:id="@+id/button_save_event"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1"
+        android:height="40dp"
+        android:maxHeight="32dp"
+        android:minHeight="8dp"
+        android:text="Save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBarPurpose" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
